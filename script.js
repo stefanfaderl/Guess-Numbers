@@ -75,11 +75,11 @@ function startGame(numberToGuess) {
     if (guessedNumber < numberToGuess) {
       document.getElementById("count").innerHTML =
         "Remaining attempts: " + numberOfTries;
-      document.getElementById("textInfo").innerHTML = "You guessed to low!";
+      document.getElementById("textInfo").innerHTML = "Low";
     } else if (guessedNumber > numberToGuess) {
       document.getElementById("count").innerHTML =
         "Remaining attempts: " + numberOfTries;
-      document.getElementById("textInfo").innerHTML = "You guessed to high!";
+      document.getElementById("textInfo").innerHTML = "High";
     } else {
       document.getElementById("textInfo").style.display = "none";
       document.getElementById("count").innerHTML =
@@ -128,12 +128,16 @@ show_hide();
 
 function show_hide() {
   if (a == 1) {
-    document.getElementById("alert-success").style.display = "inline";
+    document.getElementById("alert-success").classList.remove("d-none");
+    document.getElementById("alert-success").classList.add("d-flex");
   } else if (a == 2) {
-    document.getElementById("alert-el").style.display = "inline";
+    document.getElementById("alert-el").classList.remove("d-none");
+    document.getElementById("alert-el").classList.add("d-flex");
   } else {
-    document.getElementById("alert-el").style.display = "none";
-    document.getElementById("alert-success").style.display = "none";
+    document.getElementById("alert-el").classList.remove("d-flex");
+    document.getElementById("alert-el").classList.add("d-none");
+    document.getElementById("alert-success").classList.remove("d-flex");
+    document.getElementById("alert-success").classList.add("d-none");
   }
 }
 

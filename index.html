@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,76 +13,108 @@
 </head>
 
 <body>
+
     <h1 class="text-center text-uppercase p-3 bg-secondary text-light m-0">Guess numbers</h1>
-    <div class="container bg-light text-dark mb-5 border border-top-0 border-right-1 border-2 border-success rounded-start"
-        id="maxW">
-        <div class="d-flex flex-column justify-content-center align-self-md-center align-items-center">
-            <article class="col-xxl-3 pt-2">
-                <p>Enter a nickname</p>
+
+    <article
+        class="container overflow-hidden bg-light text-dark border border-top-0 border-right-1 border-2 border-success rounded-start">
+
+        <section class="row my-2 gy-2">
+            <div class="col-sm-12 col-lg-6 text-center">
+                <label class="form-label">Enter a nickname</label>
                 <div class="input-group">
-                    <input class="p-2" class="form-control" id="userInputNickname" type="text" placeholder="Nickname?">
+                    <input type="text" class="form-control" id="userInputNickname" placeholder="Nickname?">
                     <button id="nick-el" class="btn btn-outline-dark" accesskey="s">Enter</button>
                 </div>
-                <p class="pt-2">Up to what number do you want to guess?
-                    <br>
+            </div>
+
+            <div class="col-sm-12 col-lg-6 text-center">
+                <label class="form-label">
+                    Range to guess?
                     (Starts from<span class="text-danger"> zero</span>!)
-                </p>
+                </label>
                 <div class="input-group">
-                    <input class="p-2" class="form-control" id="userInputNumber" type="text"
-                        placeholder="Which number?">
+                    <input type="text" class="form-control" id="userInputNumber" placeholder="Which number?">
                     <button id="rangeOfNumber" class="btn btn-outline-dark">Enter</button>
                 </div>
-            </article>
+            </div>
+            </div>
 
-            <article class="col-xxl-3">
-                <p class="pt-2">How many tries do you want?</p>
+            <div class="col-sm-12 col-lg-12 text-center">
+                <label class="form-label">How many attempts?</label>
                 <div class="input-group">
-                    <input class="p-2" class="form-control" id="trys" type="text" placeholder="Attempts?">
+                    <input class="form-control" id="trys" type="text" placeholder="Tries?">
                     <button id="playersTry" class="btn btn-outline-dark">Enter</button>
                 </div>
-                <!-- Deine versuchten Zahlen: -->
-                <section>
-                    <h5 id="trysHistory" class=" mt-3"></h5>
-                </section>
-            </article>
+            </div>
+        </section>
 
-            <!-- bei dem container ev. bug  -->
-            <article class="col-xxl-3 mx-auto">
-                <h3 class="pt-2 pb-2 text-success">Guess a number:</h3>
+        <section class="row mt-1 mb-3">
+            <div class="col-12 text-center">
+                <h5 class="form-label text-success fw-bold">Guess a number:</h5>
                 <div class="input-group">
-                    <input class="p-2" class="form-control" id="guess" type="text">
+                    <input class="form-control text-center" id="guess" type="text" placeholder="Happy guessing ;)">
                     <button id="startGame" class="btn btn-outline-dark">Enter</button>
                 </div>
-                <section>
+                <!--                 <div class="mt-2">
                     <p id="textInfo" class="text-danger"></p>
-                </section>
-                <!-- alert success -->
-                <article id="alert-success" class="col-md-2">
-                    <h4 class="text-secondary mb-3 mt-3 text-success fw-bold">Good choice!</h4>
-                    <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">Great! You guessed the number</h4>
-                        <p>Press Restart Game to play again</p>
-                    </div>
-                </article>
+                </div> -->
+            </div>
+        </section>
 
-                <!-- alert danger -->
-                <article id="alert-el" class="col-md-2">
-                    <h4 class="text-secondary mb-3 mt-3 text-danger fw-bold">Sad story!</h4>
-                    <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Sad!</h4>
-                        <p>Game Over, no more tries left!</p>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-sm-12 col-lg-4 col-xl-6 text-center">
+                <div class="card text-dark bg-light mb-3">
+                    <!-- style="max-width: 18rem;" -->
+                    <h4 class="card-header text-center">Infos</h4>
+                    <div class="card-body">
+                        <h5 class="card-title">You guessed to: <span id="textInfo" class="text-danger fw-bold"></h5>
                     </div>
-                </article>
-                <section>
-                    <p id="playersNickname">Your nickname is:</p>
-                    <p id="maxNumber">Distance from 0 to:</p>
-                    <p id="count">Remaining attempts:</p>
-                </section>
-                <button id="restartGame" class="btn btn-outline-dark mb-3 me-4" type="button">Restart Game</button>
-                <button id="saveScore" class="btn btn-outline-dark mb-3" type="button">Save your Score</button>
-            </article>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" id="playersNickname">Your nickname is:</li>
+                        <li class="list-group-item" id="maxNumber">Distance from 0 to:</li>
+                        <li class="list-group-item" id="count">Remaining attempts:</li>
+                        <li class="list-group-item" id="trysHistory">Tried numbers:</li>
+                    </ul>
+                    <!-- card footer -->
+                </div>
+                <button id="restartGame" class="btn btn-outline-dark" type="button">Restart Game</button>
+                <!-- <button id="saveScore" class="btn btn-outline-dark mb-3" type="button">Save your Score</button> -->
+            </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 text-center">
+                <section class="d-flex justify-content-center" id="alert-success">
+                    <div class="text-center">
+                        <!-- alert success -->
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading fw-bold">Great!</h4>
+                            <p>You guessed the number :)</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-sm-12 col-lg-6 text-center">
+                <section class="d-flex justify-content-center" id="alert-el">
+                    <div class="text-center">
+                        <!-- alert danger -->
+                        <div class="alert alert-danger" role="alert">
+                            <h4 class="text-secondary text-danger fw-bold">Sad story :(</h4>
+                            <p>Game Over, no more tries left!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        </div>
+
+    </article>
+
+
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
