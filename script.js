@@ -4,15 +4,13 @@ let guessedNumber;
 let randomNumber;
 let numberToGuess;
 let numberOfTries;
-// $("#alert-el").hide();
 
 /* get Nickname */
 document
   .getElementById("nick-el")
   .addEventListener("click", function nickname() {
     nickEl = document.getElementById("userInputNickname").value;
-    document.getElementById("playersNickname").innerHTML =
-      "Your nickname is: " + nickEl;
+    document.getElementById("playersNickname").innerHTML = nickEl;
     return nickEl;
   });
 
@@ -22,8 +20,7 @@ document
   .addEventListener("click", function rangeOfNumber() {
     upperLimit = Number(document.getElementById("userInputNumber").value);
     randomNumber = Math.floor(Math.random() * upperLimit);
-    document.getElementById("maxNumber").innerHTML =
-      "Distance from 0 to: " + upperLimit;
+    document.getElementById("maxNumber").innerHTML = upperLimit;
     numberToGuess = randomNumber;
     return numberToGuess;
   });
@@ -33,8 +30,7 @@ document
   .getElementById("playersTry")
   .addEventListener("click", function playersTry() {
     numberOfTries = Number(document.getElementById("trys").value);
-    document.getElementById("count").innerHTML =
-      "Remaining attempts: " + numberOfTries;
+    document.getElementById("count").innerHTML = numberOfTries;
     return numberOfTries;
   });
 
@@ -59,67 +55,35 @@ document.getElementById("startGame").addEventListener("click", function () {
 /* start game and change DOM */
 function startGame(numberToGuess) {
   guessedNumber = document.getElementById("guess").value;
-  console.log(
-    "Your guessed number is: " +
-      guessedNumber +
-      " The number to guess is: " +
-      numberToGuess +
-      " Remaining attempts: " +
-      numberOfTries
-  );
+  // console.log(
+  //   "Your guessed number is: " +
+  //     guessedNumber +
+  //     " The number to guess is: " +
+  //     numberToGuess +
+  //     " Remaining attempts: " +
+  //     numberOfTries
+  // );
   historyTries.push(guessedNumber);
-  document.getElementById("trysHistory").textContent =
-    "Your attempted numbers: " + historyTries;
+  document.getElementById("trysHistory").textContent = historyTries;
   numberOfTries--;
   if (numberOfTries > 0) {
     if (guessedNumber < numberToGuess) {
-      document.getElementById("count").innerHTML =
-        "Remaining attempts: " + numberOfTries;
+      document.getElementById("count").innerHTML = numberOfTries;
       document.getElementById("textInfo").innerHTML = "Low";
     } else if (guessedNumber > numberToGuess) {
-      document.getElementById("count").innerHTML =
-        "Remaining attempts: " + numberOfTries;
+      document.getElementById("count").innerHTML = numberOfTries;
       document.getElementById("textInfo").innerHTML = "High";
     } else {
       document.getElementById("textInfo").style.display = "none";
-      document.getElementById("count").innerHTML =
-        "Remaining attempts: " + numberOfTries;
+      document.getElementById("count").innerHTML = numberOfTries;
       a = 1;
       show_hide();
     }
   } else {
-    document.getElementById("count").innerHTML =
-      "Remaining attempts: " + numberOfTries;
+    document.getElementById("count").innerHTML = numberOfTries;
     a = 2;
     show_hide();
-    // show_hide();
-    // $("#alert-el").show();
-    // alert("Spiel beendet, keine Versuche mehr übrig!")
-    // restartGame();
   }
-
-  /* Save Highscore */
-  // const highScores = JSON.parse(localStorage.getItem("highScores")) || []; // String becomes an Object with parse
-  // console.log(highScores);
-
-  // document
-  //   .getElementById("saveScore")
-  //   .addEventListener("click", function save() {
-  //     const score = {
-  //       name: nickEl,
-  //       versuche: numberOfTries,
-  //     };
-
-  //     document.getElementById('trysLocalSt').innerText = numberOfTries;
-  //     document.getElementById('nickname-el').innerText = nickEl;
-  //     highScores.push(score);
-
-  //     localStorage.setItem("highScores", JSON.stringify(highScores)); // convert an String to an Array with stringify
-  //     // console.log(highScores);
-
-  //     /* Insert in the table */
-  //     storageFunction();
-  //   });
 }
 
 /* hide and show bootstrap alert*/
@@ -127,19 +91,41 @@ let a;
 show_hide();
 
 function show_hide() {
+  let alertSuccess = document.getElementById("alert-success");
+  let alertDanger = document.getElementById("alert-danger");
   if (a == 1) {
-    document.getElementById("alert-success").classList.remove("d-none");
-    document.getElementById("alert-success").classList.add("d-flex");
+    alertSuccess.classList.remove("d-none");
   } else if (a == 2) {
-    document.getElementById("alert-el").classList.remove("d-none");
-    document.getElementById("alert-el").classList.add("d-flex");
+    alertDanger.classList.remove("d-none");
+    document.getElementById("correctNumber").innerHTML = numberToGuess;
   } else {
-    document.getElementById("alert-el").classList.remove("d-flex");
-    document.getElementById("alert-el").classList.add("d-none");
-    document.getElementById("alert-success").classList.remove("d-flex");
-    document.getElementById("alert-success").classList.add("d-none");
+    alertDanger.classList.add("d-none");
+    alertSuccess.classList.add("d-none");
   }
 }
+
+/* Save Highscore */
+// const highScores = JSON.parse(localStorage.getItem("highScores")) || []; // String becomes an Object with parse
+// console.log(highScores);
+
+// document
+//   .getElementById("saveScore")
+//   .addEventListener("click", function save() {
+//     const score = {
+//       name: nickEl,
+//       versuche: numberOfTries,
+//     };
+
+//     document.getElementById('trysLocalSt').innerText = numberOfTries;
+//     document.getElementById('nickname-el').innerText = nickEl;
+//     highScores.push(score);
+
+//     localStorage.setItem("highScores", JSON.stringify(highScores)); // convert an String to an Array with stringify
+//     // console.log(highScores);
+
+//     /* Insert in the table */
+//     storageFunction();
+//   });
 
 /* Save in local storage */
 // function storageFunction() {
